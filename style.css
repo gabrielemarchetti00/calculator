@@ -1,0 +1,27 @@
+body{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    height: 400px;
+    width: 400px;
+}
+
+button{
+    height: 100px;
+    width: 100px;
+    font-size: 30px;
+}
+
+.display{
+    height: 65px;
+    width: 400px;
+    border: 1px solid;
+    font-size: 50px; 
+    text-align: right;
+}
