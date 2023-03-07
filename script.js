@@ -11,7 +11,11 @@ function multiply(a,b){
 }
 
 function divide(a,b){
-    return a/b;
+    if(b==0){
+        return 'cant divide by 0';
+    }
+    let num = a/b;
+    return Math.round(num * 100000) / 100000; //round to 5 decimals
 }
 
 function operate(o,a,b){
@@ -34,28 +38,36 @@ function operate(o,a,b){
 
 let display = document.querySelector('.display');
 
+let firstNum = true;
+
 let numberButtons = document.querySelectorAll('.num');
 numberButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
+        if(!firstNum) {
+            display.textContent = ''; //clear the display from second number entered
+        }
         display.textContent = display.textContent + btn.textContent;
     });
 });
 
 let currentOp, firstNumber, secondNumber;
+let firstOp = true;
 
 let opButtons = document.querySelectorAll('.op');
-let firstTime = true;
 opButtons.forEach((op) => {
     op.addEventListener('click', () => {
-        if(firstTime) {
+        if(firstOp) {
             currentOp = op.textContent;
             firstNumber = display.textContent;
             display.textContent = '';
-            firstTime = false;
+            firstOp = false;
         } else {
             secondNumber = display.textContent;
-            display.textContent = operate(currentOp, firstNumber, secondNumber);
-            firstTime = true;
+            let result = operate(currentOp, firstNumber, secondNumber);
+            currentOp = op.textContent;
+            display.textContent = result;
+            firstNumber = result;
+            firstNum = false;
         }
     });
 });
@@ -63,5 +75,22 @@ opButtons.forEach((op) => {
 let equalsButton = document.querySelector('.equals');
 equalsButton.addEventListener('click', () => {
     secondNumber = display.textContent;
-    display.textContent = operate(currentOp, firstNumber, secondNumber);
+    console.log(firstNumber);
+    console.log(secondNumber);
+    console.log(currentOp);
+    if (currentOp == undefined || firstNumber == undefined || secondNumber == undefined || firstNumber == '' || secondNumber == ''
+         || currentOp == null|| firstNumber == null || secondNumber == null) {
+        display.textContent = 'error';
+    } else {
+        display.textContent = operate(currentOp, firstNumber, secondNumber);
+    }
+});
+
+let clearButton = document.querySelector('.clear');
+clearButton.addEventListener('click', () => {
+    display.textContent = null;
+    currentOp = null;
+    firstNumber = null;
+    secondNumber = null;
+    firstOp = true;
 });
