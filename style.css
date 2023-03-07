@@ -10,6 +10,7 @@ body{
     flex-wrap: wrap;
     height: 400px;
     width: 400px;
+    align-items: flex-start;
 }
 
 button{

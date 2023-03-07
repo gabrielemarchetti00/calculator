@@ -1,5 +1,5 @@
 function add(a,b){
-    return a+b;
+    return +a + +b;
 }
 
 function subtract(a,b){
@@ -32,4 +32,36 @@ function operate(o,a,b){
     return result;
 }
 
-console.log(operate('/',5,0));
+let display = document.querySelector('.display');
+
+let numberButtons = document.querySelectorAll('.num');
+numberButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        display.textContent = display.textContent + btn.textContent;
+    });
+});
+
+let currentOp, firstNumber, secondNumber;
+
+let opButtons = document.querySelectorAll('.op');
+let firstTime = true;
+opButtons.forEach((op) => {
+    op.addEventListener('click', () => {
+        if(firstTime) {
+            currentOp = op.textContent;
+            firstNumber = display.textContent;
+            display.textContent = '';
+            firstTime = false;
+        } else {
+            secondNumber = display.textContent;
+            display.textContent = operate(currentOp, firstNumber, secondNumber);
+            firstTime = true;
+        }
+    });
+});
+
+let equalsButton = document.querySelector('.equals');
+equalsButton.addEventListener('click', () => {
+    secondNumber = display.textContent;
+    display.textContent = operate(currentOp, firstNumber, secondNumber);
+});
