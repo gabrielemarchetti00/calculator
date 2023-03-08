@@ -8,21 +8,49 @@ body{
 .container{
     display: flex;
     flex-wrap: wrap;
-    height: 400px;
-    width: 400px;
-    align-items: flex-start;
+    justify-content: center;
+    align-content: center;
+    height: 500px;
+    width: 420px;
+    gap: 10px;
+    background-color: black;
+    border-radius: 5%;
 }
 
 button{
-    height: 100px;
-    width: 100px;
+    height: 90px;
+    width: 90px;
     font-size: 30px;
+    border: 0px;
+    border-radius: 20%;
 }
 
 .display{
-    height: 65px;
-    width: 400px;
+    height: 60px;
+    width: 388px;
     border: 1px solid;
     font-size: 50px; 
     text-align: right;
+    border: 3px solid white;
+    color: white;
+}
+
+.num button{
+    background-color: red;
+    color: white;
+}
+
+.op button{
+    background-color: blue;
+    color: white;
+}
+
+.clear button{
+    background-color: green;
+    color:white;
+}
+
+.equals button{
+    background-color: orange;
+    color:white;
 }
